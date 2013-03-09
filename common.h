@@ -8,6 +8,6 @@
 #define TRUE 1
 #define FALSE 0
 
-typedef int8_t bool;
+typedef unsigned char bool;
 
 #endif
