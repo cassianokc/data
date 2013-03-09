@@ -66,9 +66,9 @@ int sstack_insert(struct sstack *stack, void *elem);
 
 /*
 * 	Prints data in the sstack structure.
-* 	@param stack POinter to the sstack structure that will be printed.
+* 	@param stack Pointer to the sstack structure that will be printed.
 */
-void sstack_pritn(struct sstack *stack);
+void sstack_print(struct sstack *stack);
 
 
 #endif
