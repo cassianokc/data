@@ -129,7 +129,7 @@ void hmap_print(struct hmap *map)
 {
 	unsigned long i, j;
 	unsigned char *aux = map->map;
-    printf("Struct hmap at %p\n", map);
+    printf("Struct hmap at %p\n", (void *) map);
     printf("map_size=%lu    key_size=%lu    elem_size=%lu\n", map->map_size,
         map->key_size, map->elem_size);
 	for (i=0; i<map->map_size; i++)
