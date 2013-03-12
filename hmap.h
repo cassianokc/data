@@ -4,7 +4,7 @@
 #include "common.h"
 
 /*
-*		@section Description A generic hash map data structure implementation,
+*	@section Description A generic hash map data structure implementation,
 * using a probing collision solving. The hash map stores data with 
 * data_size bytes each identified by a key with key_size bytes and can 
 * store up to map_size/(data_size+key_size).
@@ -40,14 +40,14 @@ bool is_deleted(void *, unsigned long);
 struct hmap *hmap_init(unsigned long map_size, unsigned long key_size, 
 	unsigned long data_size, unsigned long (*hash)(const void *)); 
 /*
-*		Frees all memory used by the hmap structure.
+*	Frees all memory used by the hmap structure.
 * 	@param map hmap structure that will be freed.
 */
 
 void hmap_free(struct hmap *map);
 /*
 * 	Inserts a new data identified by a key on a given hmap structure.
-*		@param map Pointer to a hmap structure where data is going to be added.
+*	@param map Pointer to a hmap structure where data is going to be added.
 * 	@param key Pointer to the key which identifies the data.
 * 	@param data Pointer to the data that will be added on hmap.
 * 	@return Return SUCCESS if the insertion was successfull, if there 
@@ -77,7 +77,7 @@ int hmap_remove(struct hmap *map, void *key, void *data);
 int hmap_search(struct hmap *map, void *key, void *data);
 
 /*
-*		Prints all data in the hmap structure for debugging.
+*	Prints all data in the hmap structure for debugging.
 * 	@param map Pointer to the hmap structure that will be printed.
 */
 void hmap_print(struct hmap *map);

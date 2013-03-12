@@ -48,7 +48,7 @@ bool sstack_is_full(struct sstack *stack);
 
 /*
 * 	Pops a data from the top of the stack. 
-*		@param stack Pointer to the stack from which the data will be popped.
+*	@param stack Pointer to the stack from which the data will be popped.
 * 	@param data	A pointer to where the popped data will be written to.
 * 	@return Returns SUCCESS if the stack isn't empty and the operation was
 * successfull, FAILURE otherwise.
@@ -57,7 +57,7 @@ int sstack_remove(struct sstack *stack, void *data);
 
 /*
 * 	Pushes a data in the top of the stack. 
-*		@param stack Pointer to the stack to which the data will be pushed.
+*	@param stack Pointer to the stack to which the data will be pushed.
 * 	@param data	A pointer to the data that will be written to.
 * 	@return Returns SUCCESS if the stack isn't full and the operation was
 * successfull, FAILURE otherwise.
