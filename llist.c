@@ -21,14 +21,15 @@ struct llist *llist_init(unsigned long key_size, unsigned long data_size,
 
 void llist_free(struct llist *list)
 {
-	struct llist_node *i;
+	struct llist_node *i, *j;
 	i = list->sentinel.next;
 	while (i!=&list->sentinel)
 	{
-		free(i->key);
-		free(i->data);
-		free(i);
-		i = i->next;
+        j = i;
+        i = i->next;
+        free(j->key);
+		free(j->data);
+		free(j);
 	}
 	free(list);
 }
@@ -48,7 +49,7 @@ int llist_insert(struct llist *list, void *key, void *data)
 	struct llist_node *new_node, *i;
 	if ((new_node = llist_node_alloc(list, key, data)) == NULL)
 		return FAILURE;
-	/* TODO: FINISH*/ 
+	/* TODO: FINISH*/
 	i = &list->sentinel;
 	while (i->next != &list->sentinel)
 	{
@@ -57,13 +58,13 @@ int llist_insert(struct llist *list, void *key, void *data)
 		{
 			llist_node_free(new_node);
 			memcpy(i->next->data, data, list->data_size);
-			return SUCCESS;			
+			return SUCCESS;
 		}
 		if (list->compare(i->next->key, key) < 0)
 		{
 			new_node->next = i->next;
 			i->next = new_node;
-			return SUCCESS;	
+			return SUCCESS;
 		}
 		i = i->next;
 	}
@@ -84,7 +85,7 @@ int llist_remove(struct llist *list, void *key, void *data)
 			i->next = j->next;
 			memcpy(data, j->data, list->data_size);
 			llist_node_free(j);
-			return SUCCESS;	
+			return SUCCESS;
 		}
 		i = i->next;
 	}
@@ -100,7 +101,7 @@ int llist_search(struct llist *list, void *key, void *data)
 		if (list->compare(i->key, key) == 0)
 		{
 			memcpy(data, i->data, list->data_size);
-			return SUCCESS;	
+			return SUCCESS;
 		}
 	}
 	return FAILURE;
@@ -112,8 +113,8 @@ void llist_print(struct llist *list)
 	unsigned long j;
 	unsigned char *aux;
 	i = list->sentinel.next;
-	printf("Struct llist at %p", (void *) list);
-	printf("key_size=%lu  data_size=%lu", list->key_size, list->data_size);
+	printf("Struct llist at %p\n", (void *) list);
+	printf("key_size=%lu  data_size=%lu\n", list->key_size, list->data_size);
 	while (i!=&list->sentinel)
 	{
 		aux = i->key;

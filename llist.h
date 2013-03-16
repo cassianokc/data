@@ -31,11 +31,19 @@ struct llist *llist_init(unsigned long key_size, unsigned long data_size,
 		int (*compare)(const void *, const void *));
 
 /*
-*	Frees all memory used by a llist struct.
+*		Frees all memory used by a llist struct.
 * 	@param list Pointer to the struct that will be freed.
 */
 void llist_free(struct llist *list);
 
+/*
+* 	Allocates a new node and appends it on the beggining of the linked list.
+* 	@param list Pointer to the llist struct in which the new node will be appended.
+* 	@param key Pointer to the key that identifies the data block.
+* 	@param data Pointer to the data block that will be stored on the list.
+* 	@return Returns SUCCESS if the procedure was successfull and if there isn't 
+* space for the new node returns FAILURE.
+*/
 int llist_append(struct llist *list, void *key, void *data);
 int llist_insert(struct llist *list, void *key, void *data);
 int llist_remove(struct llist *list, void *key, void *data);
