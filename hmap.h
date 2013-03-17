@@ -3,22 +3,27 @@
 
 #include "common.h"
 
+#define HMAP_EMPTY_BLOCK 0xff
+#define HMAP_DELETED_BLOCK 0xfe
+
+
 /*
 *	@section Description A generic hash map data structure implementation,
 * using a probing collision solving. The hash map stores data with 
 * data_size bytes each identified by a key with key_size bytes and can 
-* store up to map_size/(data_size+key_size).
-* 	There is a reserved key/data combination that is used to mark empty and
-* deleted map positions. The reserved key/data consist in all the bits in 
-* the data and the key been only 1s or only 0s.
-* 	Each data is written on the map, preceded by its key.
+* store up to map_size blocks.
+* 	There are reserved keys that are used to mark empty and deleted map 
+* positions. The reserved keys contain only the bits 0xff and 0xfe bytes
+*  its key.
+* 	The hash map keeps the keys and respective data on separated arrays.
 */
 struct hmap
 {
 	unsigned long map_size;
 	unsigned long data_size;
 	unsigned long key_size;	
-	void *map;
+	void *keys;
+	void *data;
 	unsigned long (*hash)(const void *);
 };
 
@@ -26,6 +31,7 @@ struct hmap
 
 bool is_empty(void *, unsigned long);
 bool is_deleted(void *, unsigned long);
+bool is_reserved(void *, unsigned long);
 /*
 * 	Inits the a hash map structure and returns a pointer to it.
 * 	@param map_size Size of the hash map.

@@ -5,7 +5,8 @@
 
 /*
 * 	@section Description A generic static stack data structure 
-* implementation, the stack can store size data of size data_size each.
+* implementation, the stack can store size data blocks of size data_size 
+* each.
 * 	The data on the stack are stored in a array pointed by data, and
 * can be acessed via the sstack_insert and sstack_remove functions.
 */
@@ -19,7 +20,7 @@ struct sstack
 
 /*
 * 	Inits a sstack structure and returns a pointer to it.
-* 	@param size Number of blocks, or data on the stack.
+* 	@param size Number of blocks on the stack.
 * 	@param data_size Size of each block.
 *		@return Returns a pointer to the new sstack structure, if there isn't
 * space returns a NULL pointer.

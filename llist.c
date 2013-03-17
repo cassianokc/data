@@ -25,9 +25,9 @@ void llist_free(struct llist *list)
 	i = list->sentinel.next;
 	while (i!=&list->sentinel)
 	{
-        j = i;
-        i = i->next;
-        free(j->key);
+		j = i;
+		i = i->next;
+		free(j->key);
 		free(j->data);
 		free(j);
 	}
@@ -49,12 +49,11 @@ int llist_insert(struct llist *list, void *key, void *data)
 	struct llist_node *new_node, *i;
 	if ((new_node = llist_node_alloc(list, key, data)) == NULL)
 		return FAILURE;
-	/* TODO: FINISH*/
 	i = &list->sentinel;
 	while (i->next != &list->sentinel)
 	{
 		if (list->compare(i->next->key, key) == 0)
-		/* If key match found, just write the new data and returns. */
+			/* If key match found, just write the new data and returns. */
 		{
 			llist_node_free(new_node);
 			memcpy(i->next->data, data, list->data_size);
@@ -79,6 +78,7 @@ int llist_remove(struct llist *list, void *key, void *data)
 	i = &list->sentinel;
 	while (i->next != &list->sentinel)
 	{
+		prefetch(i->next->next->next);
 		if (list->compare(i->next->key, key) == 0)
 		{
 			j = i->next;
@@ -98,6 +98,7 @@ int llist_search(struct llist *list, void *key, void *data)
 	i = list->sentinel.next;
 	while (i != &list->sentinel)
 	{
+		prefetch(i->next->next->next);
 		if (list->compare(i->key, key) == 0)
 		{
 			memcpy(data, i->data, list->data_size);
