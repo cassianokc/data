@@ -1,6 +1,8 @@
 #ifndef SQUEUE_H
 #define SQUEUE_H
 
+#include "common.h"
+
 /*
 * 	@section Description A static queue implementation as a circular buffer
 * using being/end pointer with a data counter inside, the data are

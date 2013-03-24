@@ -1,6 +1,6 @@
 CC=gcc
 CCFLAGS=-std=c99 -march=native -mtune=native -Os -Wall -Wextra -pedantic
-CLD=
+CLFLAGS=
 
 
 all: sstack.o squeue.o llist.o hmap.o
@@ -18,8 +18,8 @@ hmap.o: hmap.c hmap.h common.h
 	$(CC) $(CCFLAGS) $< -c
 
 utest: utest.c all
-	$(CC) $(CCFLAGS) $(CLD) -pg $< hmap.o -o utest
+	$(CC) $(CCFLAGS) $(CLFLAGS) -pg $< hmap.o -o utest
 
 #Removes all tildes ending files, objects codes and test executable
 clean:
-	rm -rf *~ *.o .*.swp  test
+	rm -rf *~ *.o .*.swp utest
