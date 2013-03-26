@@ -1,8 +1,6 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-#include <stdint.h>
-
 #define SUCCESS 0
 #define FAILURE -1
 #define TRUE 1
