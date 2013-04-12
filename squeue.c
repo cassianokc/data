@@ -17,6 +17,11 @@ struct squeue *squeue_init(unsigned long size, unsigned long data_size)
 	queue->count = 0;
 	queue->data_size = data_size;
 	queue->data = malloc(size*data_size);
+	if (queue->data == NULL)
+	{
+		free(queue);
+		return NULL;
+	}
 	return queue;
 }
 

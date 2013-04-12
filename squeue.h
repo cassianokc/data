@@ -22,7 +22,7 @@ struct squeue
 /*
 * 	Inits a new squeue data structure with size data with data_size
 * each.
-*	@param size Number of data in the queue.
+*		@param size Number of data in the queue.
 * 	@param data_size Size of each data in the queue.
 * 	@return Returns a pointer to a initialized squeue structure, if there
 * isn't space returns a NULL pointer.
@@ -51,7 +51,7 @@ bool squeue_is_full(struct squeue *queue);
 
 /*
 * 	Pops a data from the top of the queue. 
-*	@param queue Pointer to the queue from which the data will be popped.
+*		@param queue Pointer to the queue from which the data will be popped.
 * 	@param data	A pointer to where the popped data will be written to.
 * 	@return Returns SUCCESS if the queue isn't empty and the operation was
 * successfull, FAILURE otherwise.
@@ -60,7 +60,7 @@ int squeue_remove(struct squeue *queue, void *data);
 
 /*
 * 	Pushes a data in the top of the queue. 
-*	@param queue Pointer to the queue to which the data will be pushed.
+*		@param queue Pointer to the queue to which the data will be pushed.
 * 	@param data A pointer to the data that will be written to.
 * 	@return Returns SUCCESS if the queue isn't full and the operation was
 * successfull, FAILURE otherwise.

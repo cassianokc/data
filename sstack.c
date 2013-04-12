@@ -15,6 +15,11 @@ struct sstack *sstack_init(unsigned long size, unsigned long data_size)
 	stack->end = 0;
 	stack->data_size = data_size;
 	stack->data = malloc(size*data_size);
+	if (stack->data == NULL)
+	{
+		free(stack);
+		return NULL;
+	}
 	return stack;
 }
 
